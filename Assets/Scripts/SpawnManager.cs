@@ -12,85 +12,125 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] spawnersRight;
     [SerializeField] private GameObject[] spawnersTop;
 
+    private float raindropRate = 4f;
+    private float triangleDropRate = 5f;
+    private float capRainDropRate = 2f;
+    private float capTriangledropRate = 2.5f;
+    
     public void SpawnStart()
     {
-        InvokeRepeating("SpawnTriangleLeft", 1f, 5f);
-        InvokeRepeating("SpawnTriangleRight", 3f, 5f);
-        InvokeRepeating("SpawnRaindropTop", 2f, 4f);
+        StartCoroutine(SpawnTriangleLeft(1f));
+        StartCoroutine(SpawnTriangleRight(3f));
+        StartCoroutine(SpawnRaindropTop(2f));
+        StartCoroutine(fastenTheGame());
     }
 
 
-    private void SpawnTriangleLeft()
+    private IEnumerator SpawnTriangleLeft(float time)
     {
-        System.Random rand = new System.Random();
-
-        List<int> randomList = new List<int>();
-        int randCount = rand.Next(1, 5);
-        for(int i = 0; i < randCount; i++)
+        yield return new WaitForSeconds(1f);
+        while(true)
         {
-            int number = rand.Next(0, 7);
-            while (randomList.Contains(number)) number = rand.Next(0, 7);
-            randomList.Add(number);
+            System.Random rand = new System.Random();
+
+            List<int> randomList = new List<int>();
+            int randCount = rand.Next(1, 5);
+            for (int i = 0; i < randCount; i++)
+            {
+                int number = rand.Next(0, 7);
+                while (randomList.Contains(number)) number = rand.Next(0, 7);
+                randomList.Add(number);
+            }
+
+            foreach (int i in randomList)
+            {
+                Vector3 newPosition = spawnersLeft[i].transform.position;
+                newPosition.z = -2;
+
+                var spawnedTriangle = Instantiate(triangle, newPosition, Quaternion.identity, spawnersLeft[i].transform);
+
+                spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.RIGHT;
+            }
+
+            yield return new WaitForSeconds(5f);
         }
-
-        foreach (int i in randomList)
-        {
-            Vector3 newPosition = spawnersLeft[i].transform.position;
-            newPosition.z = -2;
-
-            GameObject spawnedTriangle = Instantiate(triangle, newPosition, spawnersLeft[i].transform.localRotation, spawnersLeft[i].transform) as GameObject;
-
-            spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.RIGHT;
-        }
-
     }
 
-    private void SpawnTriangleRight()
+    private IEnumerator SpawnTriangleRight(float time)
     {
-        System.Random rand = new System.Random();
-
-        List<int> randomList = new List<int>();
-        int randCount = rand.Next(1, 5);
-        for (int i = 0; i < randCount; i++)
+        yield return new WaitForSeconds(3f);
+        while (true)
         {
-            int number = rand.Next(0, 7);
-            while (randomList.Contains(number)) number = rand.Next(0, 7);
-            randomList.Add(number);
-        }
+            System.Random rand = new System.Random();
 
-        foreach (int i in randomList)
-        {
-            Vector3 newPosition = spawnersRight[i].transform.position;
-            newPosition.z = -2;
+            List<int> randomList = new List<int>();
+            int randCount = rand.Next(1, 5);
+            for (int i = 0; i < randCount; i++)
+            {
+                int number = rand.Next(0, 7);
+                while (randomList.Contains(number)) number = rand.Next(0, 7);
+                randomList.Add(number);
+            }
 
-            var spawnedTriangle = Instantiate(triangle, newPosition, Quaternion.identity, spawnersRight[i].transform);
+            foreach (int i in randomList)
+            {
+                Vector3 newPosition = spawnersRight[i].transform.position;
+                newPosition.z = -2;
 
-            spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.LEFT;
+                var spawnedTriangle = Instantiate(triangle, newPosition, Quaternion.identity, spawnersRight[i].transform);
+
+                spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.LEFT;
+            }
+            yield return new WaitForSeconds(triangleDropRate);
         }
     }
 
-    private void SpawnRaindropTop()
+    private IEnumerator SpawnRaindropTop(float time)
     {
-        System.Random rand = new System.Random();
-
-        List<int> randomList = new List<int>();
-        int randCount = rand.Next(3, 9);
-        for (int i = 0; i < randCount; i++)
+        yield return new WaitForSeconds(2f);
+        while (true)
         {
-            int number = rand.Next(0, 15);
-            while (randomList.Contains(number)) number = rand.Next(0, 15);
-            randomList.Add(number);
-        }
+            System.Random rand = new System.Random();
 
-        foreach (int i in randomList)
-        {
-            Vector3 newPosition = spawnersTop[i].transform.position;
-            newPosition.z = -2;
+            List<int> randomList = new List<int>();
+            int randCount = rand.Next(3, 9);
+            for (int i = 0; i < randCount; i++)
+            {
+                int number = rand.Next(0, 15);
+                while (randomList.Contains(number)) number = rand.Next(0, 15);
+                randomList.Add(number);
+            }
 
-            var spawnedTriangle = Instantiate(rainDrop, newPosition, Quaternion.identity, spawnersTop[i].transform);
+            foreach (int i in randomList)
+            {
+                Vector3 newPosition = spawnersTop[i].transform.position;
+                newPosition.z = -2;
 
-            spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.DOWN;
+                var spawnedTriangle = Instantiate(rainDrop, newPosition, Quaternion.identity, spawnersTop[i].transform);
+
+                spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.DOWN;
+            }
+            yield return new WaitForSeconds(raindropRate);
         }
     }
 
+    private IEnumerator fastenTheGame()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            if (raindropRate > capRainDropRate)
+                raindropRate -= (1f / 20f);
+            else
+                raindropRate = capRainDropRate;
+
+            if (triangleDropRate > capTriangledropRate)
+                triangleDropRate -= (1f / 20f);
+            else
+                triangleDropRate = capTriangledropRate;
+
+            if (raindropRate == capRainDropRate && triangleDropRate == capTriangledropRate)
+                break;
+        }
+    }
 }
