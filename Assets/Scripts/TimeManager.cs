@@ -20,7 +20,7 @@ public class TimeManager : MonoBehaviour
     {
         highScore.text = "Highscore:" + (PlayerPrefs.GetInt("Highscore", 0)).ToString();
         audioSource.time = PlayerPrefs.GetFloat("AudioTime", 0f);
-        audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 0f);
+        audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
     }
 
     private void Start()
