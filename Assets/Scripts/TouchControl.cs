@@ -19,7 +19,14 @@ public class TouchControl : MonoBehaviour
             touchPosition.z = 0;
             Vector3 direction = touchPosition - transform.position;
             rb.velocity = new Vector2(direction.x, direction.y) * 15f;
-            
+            if(rb.velocity.x < 0 && transform.rotation.y == 0)
+            {
+                transform.Rotate(0, 180f, 0, Space.Self);
+            }
+            if(rb.velocity.x >= 0 && transform.rotation.y != 0)
+            {
+                transform.rotation = Quaternion.identity;
+            }
 
             if (touch.phase == TouchPhase.Ended)
                 rb.velocity = Vector2.zero;
