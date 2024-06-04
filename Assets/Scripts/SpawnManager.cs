@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -16,7 +17,28 @@ public class SpawnManager : MonoBehaviour
     private float triangleDropRate = 5f;
     private float capRainDropRate = 2f;
     private float capTriangledropRate = 2.5f;
-    
+
+    private int maxTriangle = 4 + 1;
+    private int minTriangle = 1;
+    private int maxRaindrop = 8 + 1;
+    private int minRaindrop = 3;
+
+    private int spawnersLeftSize;
+    private int spawnersRightSize;
+    private int spawnersTopSize;
+
+    private int spawnerRandomizerMax = 30;
+
+    private float rainDropIncreaseRate = 1f / 20f;
+    private float triangleIncreaseRate = 1f / 20f;
+
+    private void Awake()
+    {
+        spawnersLeftSize = spawnersLeft.Count();
+        spawnersRightSize = spawnersRight.Count();
+        spawnersTopSize = spawnersTop.Count();
+    }
+
     public void SpawnStart()
     {
         StartCoroutine(SpawnTriangleLeft(1f));
@@ -25,6 +47,12 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(fastenTheGame());
     }
 
+    private IEnumerator SpawnGameObject(GameObject gameObject, Vector3 newPosition, Transform spawnerTransform, DIRECTION direction, float time)
+    {
+        yield return new WaitForSeconds(time / 100f); //wait for miliseconds
+        var spawnedObject = Instantiate(gameObject, newPosition, Quaternion.identity, spawnerTransform);
+        spawnedObject.GetComponent<MoveTriangle>().direction = direction;
+    }
 
     private IEnumerator SpawnTriangleLeft(float time)
     {
@@ -34,11 +62,11 @@ public class SpawnManager : MonoBehaviour
             System.Random rand = new System.Random();
 
             List<int> randomList = new List<int>();
-            int randCount = rand.Next(1, 5);
+            int randCount = rand.Next(minTriangle, maxTriangle);
             for (int i = 0; i < randCount; i++)
             {
-                int number = rand.Next(0, 7);
-                while (randomList.Contains(number)) number = rand.Next(0, 7);
+                int number = rand.Next(0, spawnersLeftSize);
+                while (randomList.Contains(number)) number = rand.Next(0, spawnersLeftSize);
                 randomList.Add(number);
             }
 
@@ -47,9 +75,9 @@ public class SpawnManager : MonoBehaviour
                 Vector3 newPosition = spawnersLeft[i].transform.position;
                 newPosition.z = -2;
 
-                var spawnedTriangle = Instantiate(triangle, newPosition, Quaternion.identity, spawnersLeft[i].transform);
+                float randTime = (float)rand.Next(0, spawnerRandomizerMax);
 
-                spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.RIGHT;
+                StartCoroutine(SpawnGameObject(triangle, newPosition, spawnersLeft[i].transform, DIRECTION.RIGHT, randTime));
             }
 
             yield return new WaitForSeconds(5f);
@@ -64,11 +92,11 @@ public class SpawnManager : MonoBehaviour
             System.Random rand = new System.Random();
 
             List<int> randomList = new List<int>();
-            int randCount = rand.Next(1, 5);
+            int randCount = rand.Next(minTriangle, maxTriangle);
             for (int i = 0; i < randCount; i++)
             {
-                int number = rand.Next(0, 7);
-                while (randomList.Contains(number)) number = rand.Next(0, 7);
+                int number = rand.Next(0, spawnersRightSize);
+                while (randomList.Contains(number)) number = rand.Next(0, spawnersRightSize);
                 randomList.Add(number);
             }
 
@@ -77,9 +105,9 @@ public class SpawnManager : MonoBehaviour
                 Vector3 newPosition = spawnersRight[i].transform.position;
                 newPosition.z = -2;
 
-                var spawnedTriangle = Instantiate(triangle, newPosition, Quaternion.identity, spawnersRight[i].transform);
 
-                spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.LEFT;
+                float randTime = (float)rand.Next(0, spawnerRandomizerMax);
+                StartCoroutine(SpawnGameObject(triangle, newPosition, spawnersRight[i].transform, DIRECTION.LEFT, randTime));
             }
             yield return new WaitForSeconds(triangleDropRate);
         }
@@ -93,11 +121,11 @@ public class SpawnManager : MonoBehaviour
             System.Random rand = new System.Random();
 
             List<int> randomList = new List<int>();
-            int randCount = rand.Next(3, 9);
+            int randCount = rand.Next(minRaindrop, maxRaindrop);
             for (int i = 0; i < randCount; i++)
             {
-                int number = rand.Next(0, 15);
-                while (randomList.Contains(number)) number = rand.Next(0, 15);
+                int number = rand.Next(0, spawnersTopSize);
+                while (randomList.Contains(number)) number = rand.Next(0, spawnersTopSize);
                 randomList.Add(number);
             }
 
@@ -106,9 +134,8 @@ public class SpawnManager : MonoBehaviour
                 Vector3 newPosition = spawnersTop[i].transform.position;
                 newPosition.z = -2;
 
-                var spawnedTriangle = Instantiate(rainDrop, newPosition, Quaternion.identity, spawnersTop[i].transform);
-
-                spawnedTriangle.GetComponent<MoveTriangle>().direction = DIRECTION.DOWN;
+                float randTime = (float)rand.Next(0, spawnerRandomizerMax);
+                StartCoroutine(SpawnGameObject(rainDrop, newPosition, spawnersTop[i].transform, DIRECTION.DOWN, randTime));
             }
             yield return new WaitForSeconds(raindropRate);
         }
@@ -120,12 +147,12 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             if (raindropRate > capRainDropRate)
-                raindropRate -= (1f / 20f);
+                raindropRate -= rainDropIncreaseRate;
             else
                 raindropRate = capRainDropRate;
 
             if (triangleDropRate > capTriangledropRate)
-                triangleDropRate -= (1f / 20f);
+                triangleDropRate -= triangleIncreaseRate;
             else
                 triangleDropRate = capTriangledropRate;
 
