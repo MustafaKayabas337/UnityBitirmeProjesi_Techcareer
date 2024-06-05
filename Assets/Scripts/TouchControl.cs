@@ -5,10 +5,14 @@ using UnityEngine;
 public class TouchControl : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] private GameObject leftWall, rightWall, upWall, botWall;
+    private GameObject leftWall, rightWall, upWall, botWall;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        leftWall = GameObject.Find("Walls/LeftWall");
+        rightWall = GameObject.Find("Walls/RightWall");
+        upWall = GameObject.Find("Walls/UpperWall");
+        botWall = GameObject.Find("Walls/BottomWall");
     }
     private void Update()
     {

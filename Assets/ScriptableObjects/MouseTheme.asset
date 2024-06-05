@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b79d82cbc1f5b94db092e85d8ebc331, type: 3}
+  m_Name: MouseTheme
+  m_EditorClassIdentifier: 
+  themeName: MouseTheme
+  EASY: {fileID: 21300000, guid: d796fb7551a77f8428b726c5011daffa, type: 3}
+  NORMAL: {fileID: 21300000, guid: d4fd1a5f78a14f34583af20b3f175bea, type: 3}
+  HARD: {fileID: 21300000, guid: 4c75e507e0606154a8a52eb8c74f9099, type: 3}
+  MENU: {fileID: 21300000, guid: 4ba86d8c6012057408b87d47669312f2, type: 3}
+  RETRY: {fileID: 21300000, guid: 00383f38bfcea6745b6557c8d0ed0d0e, type: 3}
+  PLAY: {fileID: 21300000, guid: cfb2c028cf2d67345a85a1d6342361eb, type: 3}
+  SETTINGS: {fileID: 21300000, guid: 5a79eff1aed706349b60ad29df5b5040, type: 3}
+  SHOP: {fileID: 21300000, guid: 6bc19eac6ada7bb43a033bc8c22a341b, type: 3}
+  BACK: {fileID: 21300000, guid: 9ba9d450522c5c547961964d781be7e0, type: 3}
+  Background: {fileID: 21300000, guid: 191c23860e5a245439baf63b5cfbce35, type: 3}
+  Character: {fileID: 6888082766529155569, guid: 2c2953abc0eb7f7469d677ea26078641, type: 3}
+  Collectible: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}

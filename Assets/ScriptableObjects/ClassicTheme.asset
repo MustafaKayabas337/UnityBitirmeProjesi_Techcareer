@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b79d82cbc1f5b94db092e85d8ebc331, type: 3}
+  m_Name: ClassicTheme
+  m_EditorClassIdentifier: 
+  themeName: ClassicTheme
+  EASY: {fileID: 21300000, guid: bc5891c31ecd7874fb4953a2c7953f8b, type: 3}
+  NORMAL: {fileID: 21300000, guid: 5d89a190711d47643ba7447f4a9ae811, type: 3}
+  HARD: {fileID: 21300000, guid: aed68417fc7a8dd4396b091dbd1cabdb, type: 3}
+  MENU: {fileID: 21300000, guid: bbecac3a3b06a1e4f8d7fb20e07b1f82, type: 3}
+  RETRY: {fileID: 21300000, guid: 98d69ef20b979dd4c851ad99979a9196, type: 3}
+  PLAY: {fileID: 21300000, guid: 363661de024c7c84c810960598cf44bd, type: 3}
+  SETTINGS: {fileID: 21300000, guid: 42bf4e7f73e8f894ea0c6eced5480736, type: 3}
+  SHOP: {fileID: 21300000, guid: a9fa638a01e2b0b48abae4eef9429bfa, type: 3}
+  BACK: {fileID: 21300000, guid: 48082abe9a77e6147871ba5fddd6ea26, type: 3}
+  Background: {fileID: 21300000, guid: b5fa22feaba4048459e81aaed8b66713, type: 3}
+  Character: {fileID: 6945185696321617868, guid: 711a03fe0da3a7446ae6bc2f4d129391, type: 3}
+  Collectible: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
