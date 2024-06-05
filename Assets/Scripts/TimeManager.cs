@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class TimeManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text highScore;
+    [SerializeField] private TMP_Text coinText;
     [SerializeField] private AudioSource audioSource;
+
     private bool isGameStarted = false;
     private SpawnManager spawnManager;
     private TimeSpan gameTime;
@@ -20,6 +23,9 @@ public class TimeManager : MonoBehaviour
         highScore.text = "Highscore:" + (PlayerPrefs.GetInt("Highscore", 0)).ToString();
         audioSource.time = PlayerPrefs.GetFloat("AudioTime", 0f);
         audioSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        coinText = (GameObject.Find("/Canvas/GameScreen/CoinText")).GetComponent<TMP_Text>();
+        int coin = PlayerPrefs.GetInt("Coin", 0);
+        coinText.text = ":" + coin.ToString();
     }
 
     private void Start()

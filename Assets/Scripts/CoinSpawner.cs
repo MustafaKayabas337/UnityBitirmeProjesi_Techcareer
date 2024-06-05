@@ -8,7 +8,7 @@ public class CoinSpawner : MonoBehaviour
     [SerializeField] private GameObject leftWall, rightWall, upWall, botWall;
     private int minX, maxX, minY, maxY;
 
-    private float SpawnCoinRate = 1f;
+    private float SpawnCoinRate = 3f;
 
     private void Awake()
     {
@@ -39,7 +39,7 @@ public class CoinSpawner : MonoBehaviour
                     Vector3 position = new Vector3(coinX, coinY, coinZ);
                     var obj = Instantiate(coin, position, Quaternion.identity, transform);
                     obj.transform.localPosition = position;
-                    Destroy(obj, 2f);
+                    Destroy(obj, 1f);
                 }
             }
             else
