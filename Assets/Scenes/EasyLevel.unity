@@ -1158,13 +1158,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: up
+      value: 
+      objectReference: {fileID: 6924994683879509858}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
       propertyPath: MENU
       value: 
       objectReference: {fileID: 323567853}
     - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: down
+      value: 
+      objectReference: {fileID: 5342332653536200661}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: left
+      value: 
+      objectReference: {fileID: 5535286480551045072}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
       propertyPath: RETRY
       value: 
       objectReference: {fileID: 905349988}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: right
+      value: 
+      objectReference: {fileID: 7451724878573668802}
     - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
       propertyPath: SceneName
       value: EasyLevel
@@ -1177,6 +1193,26 @@ PrefabInstance:
       propertyPath: GameScreen
       value: 
       objectReference: {fileID: 1949504265611374856}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: Walls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: Walls.Array.data[0]
+      value: 
+      objectReference: {fileID: 6924994683879509858}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: Walls.Array.data[1]
+      value: 
+      objectReference: {fileID: 5342332653536200661}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: Walls.Array.data[2]
+      value: 
+      objectReference: {fileID: 5535286480551045072}
+    - target: {fileID: 1979374054563234847, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
+      propertyPath: Walls.Array.data[3]
+      value: 
+      objectReference: {fileID: 7451724878573668802}
     - target: {fileID: 3703258825556000831, guid: e0d968938457dc54dadf5fd3a2ef8edd, type: 3}
       propertyPath: m_Name
       value: ThemeManager
@@ -1553,7 +1589,6 @@ RectTransform:
   - {fileID: 1157423872}
   - {fileID: 4226098084013841327}
   - {fileID: 8701206614656634629}
-  - {fileID: 1784395335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1795,12 +1830,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784395334}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1224426280}
+  m_Father: {fileID: 4226098084013841327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2673,6 +2708,7 @@ RectTransform:
   - {fileID: 16905026}
   - {fileID: 1185916091}
   - {fileID: 660975594}
+  - {fileID: 1784395335}
   m_Father: {fileID: 1224426280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3115,7 +3151,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.33768895, b: 0.4811321, a: 1}
+  m_Color: {r: 0, g: 0.3372549, b: 0.4784314, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

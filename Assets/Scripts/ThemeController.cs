@@ -16,6 +16,8 @@ public class ThemeController : MonoBehaviour
     [SerializeField] private Image Background;
     [Header("GameScreen")]
     [SerializeField] private GameObject GameScreen;
+    [Header("Walls")]
+    [SerializeField] private SpriteRenderer[] Walls;
     private Theme theme;
     public void Awake()
     {
@@ -48,6 +50,8 @@ public class ThemeController : MonoBehaviour
             RETRY.sprite = theme.RETRY;
             Background.sprite = theme.Background;
             Instantiate(theme.Character, new Vector3(0f,0f,-2f), Quaternion.identity, GameScreen.transform);
+            foreach (SpriteRenderer wall in Walls)
+                wall.color = theme.WallColor;
         }
     }
 }

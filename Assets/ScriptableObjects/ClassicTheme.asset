@@ -23,5 +23,6 @@ MonoBehaviour:
   SHOP: {fileID: 21300000, guid: a9fa638a01e2b0b48abae4eef9429bfa, type: 3}
   BACK: {fileID: 21300000, guid: 48082abe9a77e6147871ba5fddd6ea26, type: 3}
   Background: {fileID: 21300000, guid: b5fa22feaba4048459e81aaed8b66713, type: 3}
+  WallColor: {r: 0, g: 0.3372549, b: 0.4784314, a: 1}
   Character: {fileID: 6945185696321617868, guid: 711a03fe0da3a7446ae6bc2f4d129391, type: 3}
   Collectible: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}

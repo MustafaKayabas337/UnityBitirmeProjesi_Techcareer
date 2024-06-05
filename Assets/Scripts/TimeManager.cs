@@ -12,10 +12,9 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text highScore;
     [SerializeField] private AudioSource audioSource;
-    private bool timerIsActive = false;
+    private bool isGameStarted = false;
     private SpawnManager spawnManager;
-
-
+    private TimeSpan gameTime;
     private void Awake()
     {
         highScore.text = "Highscore:" + (PlayerPrefs.GetInt("Highscore", 0)).ToString();
@@ -26,22 +25,36 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        StartCoroutine(ScoreCounter());
     }
+
     private void Update()
     {
-        if (!timerIsActive && Input.touchCount > 0)
-        {
-            timerIsActive = true;
-            spawnManager.SpawnStart();
-        }
-
-        if (timerIsActive)
+        if (isGameStarted)
         {
             currentTime += Time.deltaTime % 60;
-            TimeSpan time = TimeSpan.FromSeconds(currentTime);
-            timeText.text = "Time:" + time.ToString("mm':'ss':'ff");
-            scoreText.text = "Score:" + ((int)time.TotalSeconds * ((int)time.TotalMinutes + 1) - ((int)time.TotalMinutes) * 60);
+            gameTime = TimeSpan.FromSeconds(currentTime);
+            timeText.text = "Time:" + gameTime.ToString("mm':'ss':'ff");
         }
-
+    }
+    private IEnumerator ScoreCounter()
+    {
+        while (true)
+        {
+            if (Input.touchCount > 0)
+            {
+                spawnManager.SpawnStart();
+                isGameStarted = true;
+                break;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        int score = -1;
+        while (true)
+        {
+            score += 1 * (int)(gameTime.TotalMinutes + 1);
+            scoreText.text = "Score:" + score.ToString();
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
