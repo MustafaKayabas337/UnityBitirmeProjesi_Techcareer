@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Transactions;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class TimeManager : MonoBehaviour
 {

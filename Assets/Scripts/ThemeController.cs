@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ThemeController : MonoBehaviour
@@ -21,7 +21,7 @@ public class ThemeController : MonoBehaviour
     private Theme theme;
     public void Awake()
     {
-        string themeName = PlayerPrefs.GetString("Theme", "MouseTheme");
+        string themeName = PlayerPrefs.GetString("Theme", "ClassicTheme");
 
         foreach(Theme theme in themes)
         {
@@ -53,5 +53,15 @@ public class ThemeController : MonoBehaviour
             foreach (SpriteRenderer wall in Walls)
                 wall.color = theme.WallColor;
         }
+    }
+
+    public void ChangeTheme()
+    {
+        string themeName = PlayerPrefs.GetString("Theme", "ClassicTheme");
+        if (themeName == "ClassicTheme")
+            PlayerPrefs.SetString("Theme", "MouseTheme");
+        else
+            PlayerPrefs.SetString("Theme", "ClassicTheme");
+        SceneManager.LoadScene("MainMenu");
     }
 }
