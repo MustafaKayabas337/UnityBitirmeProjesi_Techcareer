@@ -12,6 +12,9 @@ public class MoveTriangle : MonoBehaviour
     private void Start()
     {
         gameOver = GameObject.Find("GameManager").GetComponent<GameOver>();
+
+        if (direction == DIRECTION.LEFT)
+            transform.Rotate(0, 180f, 0, Space.Self);
     }
     void Update()
     {
