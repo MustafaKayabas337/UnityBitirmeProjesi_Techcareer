@@ -13,6 +13,9 @@ public class CoinCollect : MonoBehaviour
     {
         coinPickSfx = (GameObject.Find("/CoinPickupSFX")).GetComponent<AudioSource>();
         coinText = (GameObject.Find("/Canvas/GameScreen/CoinText")).GetComponent<TMP_Text>();
+
+        float volume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        coinPickSfx.volume = volume;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

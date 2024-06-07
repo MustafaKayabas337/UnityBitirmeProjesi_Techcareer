@@ -25,4 +25,6 @@ MonoBehaviour:
   Background: {fileID: 21300000, guid: b5fa22feaba4048459e81aaed8b66713, type: 3}
   WallColor: {r: 0, g: 0.3372549, b: 0.4784314, a: 1}
   Character: {fileID: 6945185696321617868, guid: 711a03fe0da3a7446ae6bc2f4d129391, type: 3}
+  EnemyLeftRight: {fileID: 7330658923545285696, guid: 5183ed30c80351e45ab02904258e7b57, type: 3}
+  Raindrop: {fileID: 9222227007813781961, guid: 289a0acc4c1028c4a942966464492fb0, type: 3}
   Collectible: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}

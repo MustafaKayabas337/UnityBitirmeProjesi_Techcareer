@@ -943,8 +943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e392d816a285349bc4a65739a85561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triangle: {fileID: 7517818097873964195, guid: 3b0fc380bcd4e9243b1c2756b8f552ba, type: 3}
-  rainDrop: {fileID: 9222227007813781961, guid: 289a0acc4c1028c4a942966464492fb0, type: 3}
   spawnersLeft:
   - {fileID: 26835037}
   - {fileID: 231506883}
@@ -3998,6 +3996,6 @@ SceneRoots:
   - {fileID: 1224426280}
   - {fileID: 330679343}
   - {fileID: 478099902743659677}
-  - {fileID: 316818103}
   - {fileID: 963716997}
   - {fileID: 1003451829}
+  - {fileID: 316818103}
