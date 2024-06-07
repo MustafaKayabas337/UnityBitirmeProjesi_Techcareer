@@ -7,8 +7,8 @@ using System.Linq;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GameObject triangle;
-    [SerializeField] private GameObject rainDrop;
+    private GameObject triangle;
+    private GameObject rainDrop;
     [SerializeField] private GameObject[] spawnersLeft;
     [SerializeField] private GameObject[] spawnersRight;
     [SerializeField] private GameObject[] spawnersTop;
@@ -37,6 +37,9 @@ public class SpawnManager : MonoBehaviour
         spawnersLeftSize = spawnersLeft.Count();
         spawnersRightSize = spawnersRight.Count();
         spawnersTopSize = spawnersTop.Count();
+
+        triangle = GameObject.Find("/ThemeManager").GetComponent<ThemeController>().triangle;
+        rainDrop = GameObject.Find("/ThemeManager").GetComponent<ThemeController>().raindrop;
     }
 
     public void SpawnStart()

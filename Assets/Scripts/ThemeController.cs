@@ -18,6 +18,8 @@ public class ThemeController : MonoBehaviour
     [SerializeField] private GameObject GameScreen;
     [Header("Walls")]
     [SerializeField] private SpriteRenderer[] Walls;
+    public GameObject triangle;
+    public GameObject raindrop;
     private Theme theme;
     public void Awake()
     {
@@ -52,6 +54,8 @@ public class ThemeController : MonoBehaviour
             Instantiate(theme.Character, new Vector3(0f,0f,-2f), Quaternion.identity, GameScreen.transform);
             foreach (SpriteRenderer wall in Walls)
                 wall.color = theme.WallColor;
+            triangle = theme.EnemyLeftRight;
+            raindrop = theme.Raindrop;
         }
     }
 

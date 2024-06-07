@@ -15,6 +15,8 @@ public class Theme : ScriptableObject
     public Color WallColor;
     [Header("Character")]
     public GameObject Character;
+    public GameObject EnemyLeftRight;
+    public GameObject Raindrop;
     [Header("Collectible")]
     public GameObject Collectible;
 }
